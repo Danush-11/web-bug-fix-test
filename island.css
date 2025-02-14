@@ -1,0 +1,57 @@
+/* Enhanced CSS with utility classes */
+main { padding: 2rem 1.5rem; }
+h1, h2, h3 { color: #5E35B1; }
+.text-gray-700 { color: #4A5568; }
+.grid { display: grid; gap: 1.5rem; }
+.grid-cols-1 { grid-template-columns: 1fr; }
+.text-center { text-align: center; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-8 { margin-top: 2rem; }
+.mt-12 { margin-top: 3rem; }
+.font-bold { font-weight: 700; }
+.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+.text-2xl { font-size: 1.5rem; line-height: 2rem; }
+.text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+.max-w-lg { max-width: 32rem; }
+.w-full { width: 100%; }
+
+@media(min-width: 768px) {
+  .md\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+}
+.card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  .btn, button {
+    background: #f2f21f;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+
+  .btn:hover, button:hover {
+    opacity: 0.9;
+  }
+
+  select, input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+  }
+

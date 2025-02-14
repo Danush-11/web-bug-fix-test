@@ -1,0 +1,208 @@
+  /* Search Container */
+  .search {
+    padding: 60px 20px; /* Reduced padding for smaller screens */
+    background: var(--background-gradient);
+    color: rgb(255, 255, 255);
+}
+
+.search h1 {
+    font-size: 2rem; /* Smaller font size for mobile */
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #ffffff;
+}
+
+.search-container {
+    background-color: #fff;
+    padding: 15px; /* Reduced padding for smaller screens */
+    border-radius: 12px;
+    max-width: 1250px;
+    margin: 20px auto; /* Reduced margin for smaller screens */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Stack elements vertically on mobile */
+    align-items: center;
+    gap: 15px;
+}
+
+.input-group {
+    width: 100%; /* Full width for mobile */
+    margin-bottom: 15px; /* Add spacing between input groups */
+}
+
+.input-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.input-group select,
+.input-group input[type="date"] {
+    padding: 10px; /* Slightly larger padding for better touch interaction */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px; /* Larger font size for better readability */
+    background-color: #f9f9f9;
+    cursor: pointer;
+    width: 100%; /* Full width for mobile */
+}
+
+.input-group select:hover,
+.input-group input[type="date"]:hover {
+    border-color: #6a0dad;
+}
+
+.date-options {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically on mobile */
+    gap: 10px;
+    width: 100%; /* Full width for mobile */
+}
+
+.date-options button {
+    width: 100%; /* Full width for mobile */
+    padding: 12px; /* Larger padding for better touch interaction */
+    font-size: 16px; /* Larger font size for better readability */
+}
+
+#search-button {
+    margin-top: 10px; /* Add spacing above the search button */
+}
+
+/* Media Query for Larger Screens */
+@media (min-width: 768px) {
+    .search {
+        padding: 100px 80px; /* Restore padding for larger screens */
+    }
+
+    .search h1 {
+        font-size: 3rem; /* Restore font size for larger screens */
+    }
+
+    .search-container {
+        flex-direction: row; /* Align elements horizontally on larger screens */
+        padding: 20px; /* Restore padding for larger screens */
+    }
+
+    .input-group {
+        flex: 1 1 200px; /* Allow flexible sizing for input groups */
+        margin-bottom: 0; /* Remove spacing between input groups */
+    }
+
+    .date-options {
+        flex-direction: row; /* Align buttons horizontally on larger screens */
+        width: auto; /* Auto width for larger screens */
+    }
+
+    .date-options button {
+        width: auto; /* Auto width for larger screens */
+    }
+
+    #search-button {
+        margin-top: 0; /* Remove spacing above the search button */
+    }
+}
+        /* Today and Tomorrow Buttons */
+#today-button,
+#tomorrow-button {
+    background-color: #ffba00; /* Yellow color */
+    color: black; /* Text color */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+#today-button:hover,
+#tomorrow-button:hover {
+    background-color: #e6a800; /* Darker yellow on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Search Button */
+#search-button {
+    background-color: #6a0dad; /* Purple color */
+    color: white; /* Text color */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+#search-button:hover {
+    background-color: #5a0a9d; /* Darker purple on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+/* Special Promotions Section */
+.special-promotions {
+    padding: 50px 20px;
+    background: #e3d2f9;
+    color: rgb(0, 0, 0);
+}
+
+.special-promotions h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+.promotion-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    color: #333;
+    text-align: center;
+}
+
+.promotion-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.promotion-content {
+    padding: 20px;
+}
+
+.promotion-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.promotion-content p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.promotion-content .btn {
+    background: var(--secondary-color);
+    color: black;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.promotion-content .btn:hover {
+    background: #e6c200;
+}
+
+/* Swiper Customization */
+.promotion-swiper {
+    padding: 20px;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    color: var(--secondary-color);
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--secondary-color);
+}

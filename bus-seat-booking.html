@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CEYGO - Your premier mobility solution for ride-sharing, bus bookings, and parcel delivery">
+    <title>CEYGO - Mobility Solutions</title>
+    <!-- SwiperJS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="booking.css">
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <nav class="nav-container">
+            <div class="logo">
+                <img src="assets/ceygologo.png" alt="CEYGO Mobility Solutions Logo" class="logo-img">
+            </div>
+            <div class="mobile-menu" onclick="toggleMenu()" aria-label="Toggle navigation menu">☰</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#partners">Partners</a>
+                <a href="#download">Download</a>
+                <a href="#login" class="btn" onclick="event.preventDefault();showAuthModal()">Login</a>
+            </div>
+        </nav>
+    </header>
+     <!-- Auth Modal -->
+     <div id="auth-modal" class="auth-modal">
+        <div class="auth-modal-content">
+            <span class="auth-close" onclick="hideAuthModal()">&times;</span>
+            <div id="auth-tabs">
+                <div class="auth-tab-buttons">
+                    <button class="auth-tab active" onclick="switchAuthTab('login')">Login</button>
+                    <button class="auth-tab" onclick="switchAuthTab('signup')">Sign Up</button>
+                </div>
+                
+                <!-- Login Form -->
+                <div id="login-form" class="auth-tab-content active">
+                    <input type="text" placeholder="Email or Phone Number">
+                    <input type="password" placeholder="Password">
+                    <button class="auth-submit-btn" onclick="handleLogin()">Login</button>
+                </div>
+
+                <!-- Signup Form -->
+                <div id="signup-form" class="auth-tab-content">
+                    <div class="user-type-toggle">
+                        <button class="user-type-btn active" onclick="switchUserType('user')">User</button>
+                        <button class="user-type-btn" onclick="switchUserType('partner')">Partner</button>
+                    </div>
+                    
+                    <div id="signup-fields">
+                        <input type="text" placeholder="Full Name">
+                        <input type="email" placeholder="Email">
+                        <input type="tel" placeholder="Phone Number">
+                        <div id="partner-fields" class="hidden">
+                            <input type="text" placeholder="Business Name">
+                            <input type="text" placeholder="Business Address">
+                            <select>
+                                <option value="">Business Category</option>
+                                <option value="bus_operator">Bus Operator</option>
+                                <option value="ride">Ride</option>
+                                <option value="delivery">Delivery</option>
+                            </select>
+                        </div>
+                        <input type="password" placeholder="Password">
+                        <input type="password" placeholder="Confirm Password">
+                        <button class="auth-submit-btn" onclick="handleSignup()">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Container Section -->
+    <section class="search">
+        <div class="container">
+            <h1>Reserve Your Seat</h1>
+            <div class="search-container">
+                <div class="input-group">
+                    <label for="from-station" class="sr-only">From Station</label>
+                    <select id="from-station" class="from-station">
+                        <option value="">From Station</option>
+                        <option value="Kandy">Kandy</option>
+                        <option value="Colombo">Colombo</option>
+                        <option value="Jaffna">Jaffna</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="to-station" class="sr-only">To Station</label>
+                    <select id="to-station" class="to-station">
+                        <option value="">To Station</option>
+                        <option value="Kandy">Kandy</option>
+                        <option value="Colombo">Colombo</option>
+                        <option value="Jaffna">Jaffna</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="date" class="sr-only">Date</label>
+                    <input type="date" id="date">
+                </div>
+                <div class="date-options">
+                    <button id="today-button" onclick="setDate('today')" aria-label="Set date to today">Today</button>
+                    <button id="tomorrow-button" onclick="setDate('tomorrow')" aria-label="Set date to tomorrow">Tomorrow</button>
+                    <button id="search-button" onclick="searchTickets()" aria-label="Search for tickets"><b>Search</b></button>
+                </div>
+            </div>s
+        </div>
+    </section>
+
+    <!-- Special Promotions Section -->
+    <section class="special-promotions">
+        <div class="container">
+            <h2>Special Promotions</h2>
+            <div class="swiper promotion-swiper">
+                <div class="swiper-wrapper">
+                    <!-- Promotion Card 1 -->
+                    <div class="swiper-slide">
+                        <div class="promotion-card">
+                            <img src="images/promo1.jpg" alt="Promotion 1: 50% Off on First Ride" loading="lazy">
+                            <div class="promotion-content">
+                                <h3>50% Off on First Ride</h3>
+                                <p>Book your first ride and get 50% off. Limited time offer!</p>
+                                <a href="#" class="btn">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Promotion Card 2 -->
+                    <div class="swiper-slide">
+                        <div class="promotion-card">
+                            <img src="images/promo2.jpg" alt="Promotion 2: Free Parcel Delivery" loading="lazy">
+                            <div class="promotion-content">
+                                <h3>Free Parcel Delivery</h3>
+                                <p>Send parcels for free within the city. Offer valid till end of month.</p>
+                                <a href="#" class="btn">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Promotion Card 3 -->
+                    <div class="swiper-slide">
+                        <div class="promotion-card">
+                            <img src="images/promo3.jpg" alt="Promotion 3: Bus Ticket Discounts" loading="lazy">
+                            <div class="promotion-content">
+                                <h3>Bus Ticket Discounts</h3>
+                                <p>Get up to 30% off on bus tickets. Book now!</p>
+                                <a href="#" class="btn">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+                <!-- Add Navigation -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Section -->
+    <section class="partner-section" id="partners">
+        <div class="container">
+            <h2>Unlock Financial Opportunities</h2>
+            <p>Join CEYGO and start earning today.</p>
+            <div class="partner-buttons">
+                <a href="driver-registration.html" class="btn">Drive with CEYGO</a>
+                <a href="bus-operator-registration.html" class="btn-outline">Become a Bus Operator</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Download Section -->
+    <section class="download" id="download">
+        <div class="container">
+            <h2>Download Our App</h2>
+            <p>Available on Android and iOS.</p>
+            <div class="qr-codes">
+                <a href="https://play.google.com/store" target="_blank" rel="noopener">
+                    <img src="assets/playstore.png" alt="Download on Google Play" loading="lazy">
+                </a>
+                <a href="https://www.apple.com/app-store" target="_blank" rel="noopener">
+                    <img src="assets/appstore.png" alt="Download on App Store" loading="lazy">
+                </a>
+            </div>
+        </div>
+       </section>
+    
+        <!-- Footer Section Fixes -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="social-icons">
+                        <!-- Add proper social media links -->
+                        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.instagram.com/myceygo?igsh=MThjMW1obmUyazNwdg==" target="_blank" rel="noopener" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    <form class="subscribe-form">
+                        <!-- Add email validation and proper form attributes -->
+                        <label for="email" class="sr-only">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        <button type="submit" aria-label="Subscribe to newsletter">Subscribe</button>
+                    </form>
+                </div>
+                <p>&copy; 2025 CEYGO Mobility Solutions. Made with ❤️ in Sri Lanka</p>
+            </div>
+        </footer>
+        <script>
+            // Firebase Configuration
+            const firebaseConfig = {
+      apiKey: "AIzaSyD4OsZdJu0nXzNs_RgpVL3OPAXeChKrQlg",
+      authDomain: "myceygoapp.firebaseapp.com",
+      projectId: "myceygoapp",
+      storageBucket: "myceygoapp.firebasestorage.app",
+      messagingSenderId: "433209138216",
+      appId: "1:433209138216:web:92c1be78e888ae881aa91d",
+      measurementId: "G-9M9NTC68RZ"
+    };
+    
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    
+            document.getElementById('login').addEventListener('click', () => {
+                const provider = new firebase.auth.GoogleAuthProvider();
+                auth.signInWithPopup(provider).then(result => {
+                    console.log('User signed in:', result.user);
+                }).catch(error => console.error(error));
+            });
+    
+            document.getElementById('logout').addEventListener('click', () => {
+                auth.signOut().then(() => console.log('User signed out'));
+            });
+        </script>
+        
+        <script src="booking.js"></script>
+        <script src="home.js"></script>
+</body>
+</html>

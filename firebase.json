@@ -1,0 +1,24 @@
+{
+  "hosting": [
+    {
+      "target": "user-website",
+      "public": "user-website/public",
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    {
+      "target": "admin-dashboard",
+      "public": "admin-dashboard/public",
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

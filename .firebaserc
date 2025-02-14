@@ -1,0 +1,16 @@
+{
+  "projects": {},
+  "targets": {
+    "myceygo": {
+      "hosting": {
+        "user-website": [
+          "ceygo-user-website"
+        ],
+        "admin-dashboard": [
+          "ceygo-admin-dashboard"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
